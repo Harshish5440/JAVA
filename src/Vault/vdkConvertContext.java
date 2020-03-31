@@ -6,9 +6,9 @@ public class vdkConvertContext extends VaultAPI {
 
     public final void Create(final vdkContext context)
     {
-        final RefObject<IntByReference> tempRef_pConvertContext = new RefObject<IntByReference>(pConvertContext);
-        final vdkError error = vdkConvert_CreateContext(context.pContext, tempRef_pConvertContext);
-        pConvertContext = tempRef_pConvertContext.argValue;
+        //final RefObject<IntByReference> tempRef_pConvertContext = new RefObject<IntByReference>(pConvertContext);
+        final vdkError error = vdkConvert_CreateContext(context.pContext, pConvertContext);
+        //pConvertContext = tempRef_pConvertContext.argValue;
         if (error != Vault.VaultAPI.vdkError.vE_Success)
         {
             throw new RuntimeException("vdkConvertContext.Create failed.");
@@ -17,9 +17,9 @@ public class vdkConvertContext extends VaultAPI {
 
     public final void Destroy()
     {
-        final RefObject<IntByReference> tempRef_pConvertContext = new RefObject<IntByReference>(pConvertContext);
-        final vdkError error = vdkConvert_DestroyContext(tempRef_pConvertContext);
-        pConvertContext = tempRef_pConvertContext.argValue;
+        //final RefObject<IntByReference> tempRef_pConvertContext = new RefObject<IntByReference>(pConvertContext);
+        final vdkError error = vdkConvert_DestroyContext(pConvertContext);
+        //pConvertContext = tempRef_pConvertContext.argValue;
         if (error != Vault.VaultAPI.vdkError.vE_Success)
         {
             throw new RuntimeException("vdkConvertContext.Destroy failed.");
@@ -55,12 +55,12 @@ public class vdkConvertContext extends VaultAPI {
 
     public IntByReference pConvertContext = null;
 
-    private  native vdkError vdkConvert_CreateContext(IntByReference pContext, RefObject<IntByReference> ppConvertContext);
+    private  native vdkError vdkConvert_CreateContext(IntByReference pContext, IntByReference ppConvertContext);
     {
         System.loadLibrary("vaultSDK.dll");
     }
 
-    private  native vdkError vdkConvert_DestroyContext(RefObject<IntByReference> ppConvertContext);
+    private  native vdkError vdkConvert_DestroyContext(IntByReference ppConvertContext);
 
     private  native vdkError vdkConvert_AddItem(IntByReference pConvertContext, String fileName);
 

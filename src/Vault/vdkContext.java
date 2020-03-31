@@ -13,9 +13,9 @@ public class vdkContext extends VaultAPI {
 
     public final void Connect(final String pURL, final String pApplicationName, final String pUsername, final String pPassword)
     {
-        final RefObject<IntByReference> tempRef_pContext = new RefObject<IntByReference>(pContext);
-        final vdkError error = vdkContext_Connect(tempRef_pContext, pURL, pApplicationName, pUsername, pPassword);
-        pContext = tempRef_pContext.argValue;
+        //final RefObject<IntByReference> tempRef_pContext = new RefObject<IntByReference>(pContext);
+        final vdkError error = vdkContext_Connect(pContext, pURL, pApplicationName, pUsername, pPassword);
+        //pContext = tempRef_pContext.argValue;
         if (error == Vault.VaultAPI.vdkError.vE_ConnectionFailure)
         {
             throw new RuntimeException("Could not connect to server.");
@@ -44,16 +44,16 @@ public class vdkContext extends VaultAPI {
 
     public final void Disconnect()
     {
-        final RefObject<IntByReference> tempRef_pContext = new RefObject<IntByReference>(pContext);
-        final vdkError error = vdkContext_Disconnect(tempRef_pContext);
-        pContext = tempRef_pContext.argValue;
+        //final RefObject<IntByReference> tempRef_pContext = new RefObject<IntByReference>(pContext);
+        final vdkError error = vdkContext_Disconnect(pContext);
+        //pContext = tempRef_pContext.argValue;
         if (error != Vault.VaultAPI.vdkError.vE_Success)
         {
             throw new RuntimeException("vdkContext.Disconnect failed.");
         }
     }
 
-    public final void GetLicenseInfo(final LicenseType type, final RefObject<vdkLicenseInfo> info)
+    public final void GetLicenseInfo(LicenseType type, vdkLicenseInfo info)
     {
         final vdkError error = vdkContext_GetLicenseInfo(pContext, type, info);
         if (error != Vault.VaultAPI.vdkError.vE_Success && error != Vault.VaultAPI.vdkError.vE_InvalidLicense)
@@ -73,12 +73,12 @@ public class vdkContext extends VaultAPI {
 
     public IntByReference pContext = null;
 
-    private  native vdkError vdkContext_Connect(RefObject<IntByReference> ppContext, String pURL, String pApplicationName, String pUsername, String pPassword);
+    private  native vdkError vdkContext_Connect(IntByReference ppContext, String pURL, String pApplicationName, String pUsername, String pPassword);
 
     {
         System.loadLibrary("vaultSDK.dll");
     }
-    private  native vdkError vdkContext_Disconnect(RefObject<IntByReference> ppContext);
+    private  native vdkError vdkContext_Disconnect(IntByReference ppContext);
     private  native vdkError vdkContext_RequestLicense(IntByReference pContext, LicenseType licenseType);
-    private  native vdkError vdkContext_GetLicenseInfo(IntByReference pContext, LicenseType licenseType,RefObject<vdkLicenseInfo> info);
+    private  native vdkError vdkContext_GetLicenseInfo(IntByReference pContext, LicenseType licenseType,vdkLicenseInfo info);
 }

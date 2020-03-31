@@ -45,9 +45,9 @@ public class Main {
             context.RequestLicense(Vault.VaultAPI.LicenseType.Render);
 
             Vault.vdkLicenseInfo info = new Vault.vdkLicenseInfo();
-            Vault.RefObject<Vault.vdkLicenseInfo> tempRef_info = new Vault.RefObject<Vault.vdkLicenseInfo>(info);
-            context.GetLicenseInfo(Vault.VaultAPI.LicenseType.Render, tempRef_info);
-            info = tempRef_info.argValue;
+            //Vault.RefObject<Vault.vdkLicenseInfo> tempRef_info = new Vault.RefObject<Vault.vdkLicenseInfo>(info);
+            context.GetLicenseInfo(Vault.VaultAPI.LicenseType.Render, info);
+            //info = tempRef_info.argValue;
 
             if (info.queuePosition == -1) {
                 //long unixTimestamp = (long) (LocalDateTime.UtcNow.Subtract(LocalDateTime(1970, 1, 1))).TotalSeconds;
@@ -56,14 +56,14 @@ public class Main {
 
             renderer.Create(context);
             renderView.Create(context, renderer, width, height);
-            RefObject<Vault.vdkPointCloudHeader> tempRef_header = new RefObject<Vault.vdkPointCloudHeader>(header);
-            udModel.Load(context, modelName, tempRef_header);
-            header = tempRef_header.argValue;
-            RefObject<int[]> tempRef_colorBuffer = new RefObject<int[]>(colorBuffer);
-            RefObject<float[]> tempRef_depthBuffer = new RefObject<float[]>(depthBuffer);
-            renderView.SetTargets(tempRef_colorBuffer, 0, tempRef_depthBuffer);
-            depthBuffer = tempRef_depthBuffer.argValue;
-            colorBuffer = tempRef_colorBuffer.argValue;
+            //RefObject<Vault.vdkPointCloudHeader> tempRef_header = new RefObject<Vault.vdkPointCloudHeader>(header);
+            udModel.Load(context, modelName, header);
+            //header = tempRef_header.argValue;
+            //RefObject<int[]> tempRef_colorBuffer = new RefObject<int[]>(colorBuffer);
+            //RefObject<float[]> tempRef_depthBuffer = new RefObject<float[]>(depthBuffer);
+            renderView.SetTargets(colorBuffer, 0, depthBuffer);
+//            depthBuffer = tempRef_depthBuffer.argValue;
+//            colorBuffer = tempRef_colorBuffer.argValue;
 
             double[] cameraMatrix = {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -5, 0, 1};
 
@@ -107,9 +107,9 @@ public class Main {
 
     static void Convert(String inputPath, String outputPath, Vault.vdkContext context) {
         Vault.vdkLicenseInfo info = new Vault.vdkLicenseInfo();
-        RefObject<Vault.vdkLicenseInfo> tempRef_info = new RefObject<Vault.vdkLicenseInfo>(info);
-        context.GetLicenseInfo(Vault.VaultAPI.LicenseType.Convert, tempRef_info);
-        info = tempRef_info.argValue;
+        //RefObject<Vault.vdkLicenseInfo> tempRef_info = new RefObject<Vault.vdkLicenseInfo>(info);
+        context.GetLicenseInfo(Vault.VaultAPI.LicenseType.Convert, info);
+        //info = tempRef_info.argValue;
 
         if (info.queuePosition == -1) {
             context.RequestLicense(Vault.VaultAPI.LicenseType.Convert);
