@@ -1,7 +1,13 @@
 package Vault;
 
-import java.awt.*;
+import com.sun.jna.Memory;
+
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main {
 
@@ -40,51 +46,55 @@ public class Main {
             }
         }
 
-        try {
-            context.Connect(server, "java Sample", username, password);
+        //try {
+            context.Connect(server, "Java Sample", username, password);
             context.RequestLicense(Vault.VaultAPI.LicenseType.Render);
-
+            /*
             Vault.vdkLicenseInfo info = new Vault.vdkLicenseInfo();
-            Vault.RefObject<Vault.vdkLicenseInfo> tempRef_info = new Vault.RefObject<Vault.vdkLicenseInfo>(info);
-            context.GetLicenseInfo(Vault.VaultAPI.LicenseType.Render, tempRef_info);
-            info = tempRef_info.argValue;
+            context.GetLicenseInfo(Vault.VaultAPI.LicenseType.Render, info);
 
             if (info.queuePosition == -1) {
                 //long unixTimestamp = (long) (LocalDateTime.UtcNow.Subtract(LocalDateTime(1970, 1, 1))).TotalSeconds;
               //  System.out.printf("License fetched and available for another %1$s seconds." + "\r\n", info.expiresTimestamp - unixTimestamp);
             }
-
+            */
             renderer.Create(context);
             renderView.Create(context, renderer, width, height);
-            RefObject<Vault.vdkPointCloudHeader> tempRef_header = new RefObject<Vault.vdkPointCloudHeader>(header);
-            udModel.Load(context, modelName, tempRef_header);
-            header = tempRef_header.argValue;
-            RefObject<int[]> tempRef_colorBuffer = new RefObject<int[]>(colorBuffer);
-            RefObject<float[]> tempRef_depthBuffer = new RefObject<float[]>(depthBuffer);
+            udModel.Load(context, modelName, header);
+            Memory tempRef_colorBuffer = new Memory(width * height * Integer.BYTES);
+            Memory tempRef_depthBuffer = new Memory(width * height * Float.BYTES);
             renderView.SetTargets(tempRef_colorBuffer, 0, tempRef_depthBuffer);
-            depthBuffer = tempRef_depthBuffer.argValue;
-            colorBuffer = tempRef_colorBuffer.argValue;
 
-            double[] cameraMatrix = {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -5, 0, 1};
+            double[] cameraMatrix =
+                    {1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    0, -5, 0, 1};
 
             renderView.SetMatrix(Vault.VaultAPI.RenderViewMatrix.Camera, cameraMatrix);
 
             Vault.vdkRenderInstance item =  new Vault.vdkRenderInstance();
-            item.pointCloud = udModel.pModel;
-            item.worldMatrix = header.storedMatrix;
-
+            item.pointCloud = udModel.ppModel.getPointer(0);
+            //item.worldMatrix = header.storedMatrix;
+            /*
             Vault.vdkRenderInstance itemFlipped = new Vault.vdkRenderInstance();
-            itemFlipped.pointCloud = udModel.pModel;
+            itemFlipped.pointCloud = udModel.ppModel.getPointer(0);
             itemFlipped.worldMatrix = header.storedMatrix;
             itemFlipped.worldMatrix[0] = -itemFlipped.worldMatrix[0];
             itemFlipped.worldMatrix[5] = -itemFlipped.worldMatrix[5];
             itemFlipped.worldMatrix[10] = -itemFlipped.worldMatrix[10];
 
             Vault.vdkRenderInstance[] modelArray = new Vault.vdkRenderInstance[]{item, itemFlipped};
+            */
+            Vault.vdkRenderInstance[] modelArray = new Vault.vdkRenderInstance[]{item};
 
             for (int i = 0; i < 10; i++) {
-                renderer.Render(renderView, modelArray, modelArray.length);
+                renderer.Render(renderView, modelArray, modelArray.length, null);
             }
+            depthBuffer = tempRef_depthBuffer.getFloatArray(0,width*height);
+            colorBuffer = tempRef_colorBuffer.getIntArray(0,width*height);
+            tempRef_colorBuffer.disposeAll();
+            tempRef_depthBuffer.disposeAll();
 
             String imagePath = "tmp.png";
             SaveColorImage(imagePath, width, height, colorBuffer);
@@ -97,19 +107,17 @@ public class Main {
 
             //! Uncomment the following line to test the convert API
             //Convert(modelName, modelName + ".uds", context);
-        } finally {
+        //} finally {
             udModel.Unload();
             renderView.Destroy();
             renderer.Destroy();
             context.Disconnect();
-        }
+        //}
     }
 
     static void Convert(String inputPath, String outputPath, Vault.vdkContext context) {
         Vault.vdkLicenseInfo info = new Vault.vdkLicenseInfo();
-        RefObject<Vault.vdkLicenseInfo> tempRef_info = new RefObject<Vault.vdkLicenseInfo>(info);
-        context.GetLicenseInfo(Vault.VaultAPI.LicenseType.Convert, tempRef_info);
-        info = tempRef_info.argValue;
+        context.GetLicenseInfo(Vault.VaultAPI.LicenseType.Convert, info);
 
         if (info.queuePosition == -1) {
             context.RequestLicense(Vault.VaultAPI.LicenseType.Convert);
@@ -129,19 +137,32 @@ public class Main {
     static void SaveColorImage(String path, int width, int height, int[] colorBufferArr) {
         int type = BufferedImage.TYPE_INT_ARGB;
         BufferedImage bmp = new BufferedImage(width, height, type);
+        int x = 0, y = 0;
+        int val;
+        byte a = 0, r = 0, g = 0, b =0;
+        try {
+            for (y = 0; y < height; y++) {
+                for (x = 0; x < width; x++) {
+                    val = colorBufferArr[x+y*width];
+                    a = (byte) (val >> 24);
+                    //a= (byte) 254;
+                    r = (byte) (val >> 16);
+                    g = (byte) (val >> 8);
+                    b = (byte) val;
 
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                byte a = (byte) (colorBufferArr[x + y * width] >> 24);
-                byte r = (byte) (colorBufferArr[x + y * width] >> 16);
-                byte g = (byte) (colorBufferArr[x + y * width] >> 8);
-                byte b = (byte) colorBufferArr[x + y * width];
-
-                bmp.setRGB(x, y, new Color(a, r, g, b).getRGB());
+                    bmp.setRGB(x, y, r<<16 | g <<8 | b);
+                }
             }
         }
-
-      //  bmp.Save(path);
+        catch(IllegalArgumentException e){
+            Logger.getAnonymousLogger().log(Level.WARNING,String.format("Illegal Colour a: %d r: %d g: %d b: %d at (%d,%d)",a, r,g,b,x,y));
+        }
+        try {
+            ImageIO.write(bmp, "png", new File("saved.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //bmp.Save(path);
 	// write your code here
     }
 }

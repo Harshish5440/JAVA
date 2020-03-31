@@ -1,49 +1,43 @@
 package Vault;
 
-import com.sun.jna.ptr.IntByReference;
+import com.sun.jna.Memory;
+import com.sun.jna.Native;
+import com.sun.jna.Pointer;
+import com.sun.jna.Structure;
 
 public class vdkRenderContext extends  VaultAPI {
+    Pointer ppRenderContext = new Memory(Native.POINTER_SIZE);
+    Pointer pRenderContext = null;
+    private vdkContext context;
     public final void Create(final vdkContext context)
     {
-        final RefObject<IntByReference> tempRef_pRenderer = new RefObject<IntByReference>(pRenderer);
-        final vdkError error = vdkRenderContext_Create(context.pContext, tempRef_pRenderer);
-        pRenderer = tempRef_pRenderer.argValue;
-        if (error != Vault.VaultAPI.vdkError.vE_Success)
+        final int error = VaultSDKLib.INSTANCE.vdkRenderContext_Create(context.pContext, ppRenderContext);
+        if (error != Vault.VaultAPI.vdkError.vE_Success.val)
         {
             throw new RuntimeException("vdkRenderContext.Create failed.");
         }
-
+        pRenderContext = ppRenderContext.getPointer(0);
         this.context = context;
     }
 
     public final void Destroy()
     {
-        final RefObject<IntByReference> tempRef_pRenderer = new RefObject<IntByReference>(pRenderer);
-        final vdkError error = vdkRenderContext_Destroy(tempRef_pRenderer);
-        pRenderer = tempRef_pRenderer.argValue;
-        if (error != Vault.VaultAPI.vdkError.vE_Success)
+        final int error = VaultSDKLib.INSTANCE.vdkRenderContext_Destroy(ppRenderContext);
+        if (error != Vault.VaultAPI.vdkError.vE_Success.val)
         {
             throw new RuntimeException("vdkRenderContext.Destroy failed.");
         }
+        pRenderContext = null;
     }
 
-    public void Render(final vdkRenderView renderView, final vdkRenderInstance[] pModels, final int modelCount)
+    public void Render(final vdkRenderView renderView, final vdkRenderInstance[] pModels, final int modelCount, Structure options)
     {
-        vdkError error = vdkRenderContext_Render(pRenderer, renderView.pRenderView, pModels, modelCount, IntByReference h );
-        if (error != Vault.VaultAPI.vdkError.vE_Success)
+        int error = VaultSDKLib.INSTANCE.vdkRenderContext_Render(pRenderContext, renderView.pRenderView, pModels, modelCount, null );
+        if (error != Vault.VaultAPI.vdkError.vE_Success.val)
         {
             throw new RuntimeException("vdkRenderContext.Render failed.");
         }
     }
 
-    public IntByReference pRenderer = null;
-    private vdkContext context;
 
-    private  native vdkError vdkRenderContext_Create(IntByReference pContext, RefObject<IntByReference> ppRenderer);
-
-    {
-        System.loadLibrary("vaultSDK.dll");
-    }
-    private  native vdkError vdkRenderContext_Destroy(RefObject<IntByReference> ppRenderer);
-    private  native vdkError vdkRenderContext_Render(IntByReference pRenderer, IntByReference pRenderView, vdkRenderInstance[] pModels, int modelCount, IntByReference options);
 }

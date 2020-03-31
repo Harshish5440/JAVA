@@ -1,8 +1,10 @@
 package Vault;
 
+import com.sun.jna.Structure;
 import com.sun.jna.ptr.IntByReference;
 
-public class vdkAttributeSet {
+@Structure.FieldOrder({"standardContent","count","allocated","pDescriptors"})
+class vdkAttributeSet extends Structure {
 
     public VaultAPI.StandardAttributeContent standardContent;
     //ORIGINAL LINE: public uint count;
