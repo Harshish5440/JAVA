@@ -1,14 +1,16 @@
 package Vault;
 
-import com.sun.jna.ptr.IntByReference;
+import com.sun.jna.Memory;
+import com.sun.jna.Native;
+import com.sun.jna.Pointer;
 
 public class vdkPointCloud extends VaultAPI {
-    public final void Load(final vdkContext context, final String modelLocation, final RefObject<vdkPointCloudHeader> header)
+    Memory ppModel = null;
+    public final void Load(final vdkContext context, final String modelLocation,  vdkPointCloudHeader header)
     {
-        final RefObject<IntByReference> tempRef_pModel = new RefObject<IntByReference>(pModel);
-        final vdkError error = vdkPointCloud_Load(context.pContext, tempRef_pModel, modelLocation, header);
-        pModel = tempRef_pModel.argValue;
-        if (error != Vault.VaultAPI.vdkError.vE_Success)
+        ppModel = new Memory(Native.POINTER_SIZE);
+        final int error = VaultSDKLib.INSTANCE.vdkPointCloud_Load(context.pContext, (Pointer) ppModel, modelLocation, null);
+        if (error != Vault.VaultAPI.vdkError.vE_Success.val)
         {
             throw new RuntimeException("vdkPointCloud.Load failed.");
         }
@@ -18,18 +20,27 @@ public class vdkPointCloud extends VaultAPI {
 
     public final void Unload()
     {
-        final RefObject<IntByReference> tempRef_pModel = new RefObject<IntByReference>(pModel);
-        final vdkError error = vdkPointCloud_Unload(tempRef_pModel);
-        pModel = tempRef_pModel.argValue;
-        if (error != Vault.VaultAPI.vdkError.vE_Success)
+        try {
+            Thread.sleep(60000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        final int error = VaultSDKLib.INSTANCE.vdkPointCloud_Unload((Pointer) ppModel);
+
+        if (error != Vault.VaultAPI.vdkError.vE_Success.val)
         {
             throw new RuntimeException("vdkPointCloud.Unload failed.");
         }
+        ppModel.disposeAll();
+        ppModel = null;
     }
 
-    public final void GetMetadata(final RefObject<String> ppJSONMetadata)
+    /*
+    public String GetMetadata(final RefObject<String> ppJSONMetadata)
 
     {
+        Memory ppJSONMetaData = new Memory(4);
         final vdkError error = vdkPointCloud_GetMetadata(pModel, ppJSONMetadata);
         if (error != Vault.VaultAPI.vdkError.vE_Success)
         {
@@ -37,16 +48,9 @@ public class vdkPointCloud extends VaultAPI {
         }
     }
 
-    public IntByReference pModel = null;
+     */
+
+    //public Pointer pModel = null;
     private vdkContext context;
 
-    private  native vdkError vdkPointCloud_Load(IntByReference pContext, RefObject<IntByReference> ppModel, String modelLocation, RefObject<vdkPointCloudHeader> header);
-
-    {
-        System.loadLibrary("vaultSDK.dll");
-    }
-
-    private  native vdkError vdkPointCloud_Unload(RefObject<IntByReference> ppModel);
-
-    private  native vdkError vdkPointCloud_GetMetadata(IntByReference pModel, RefObject<String> ppJSONMetadata);
 }

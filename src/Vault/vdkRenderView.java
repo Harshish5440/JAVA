@@ -1,17 +1,20 @@
 package Vault;
 
-import com.sun.jna.ptr.IntByReference;
-
-import java.math.BigInteger;
+import com.sun.jna.Memory;
+import com.sun.jna.Native;
+import com.sun.jna.Pointer;
 
 public class vdkRenderView extends VaultAPI {
     //ORIGINAL LINE: public void Create(vdkContext context, vdkRenderContext renderer, UInt32 width, UInt32 height)
+
+    public Pointer pRenderView = null;
+    public Pointer ppRenderView = new Memory(Native.POINTER_SIZE);
+    private vdkContext context;
     public final void Create(final vdkContext context, final vdkRenderContext renderer, final int width, final int height)
     {
-        final RefObject<IntByReference> tempRef_pRenderView = new RefObject<IntByReference>(pRenderView);
-        final vdkError error = vdkRenderView_Create(context.pContext, tempRef_pRenderView, renderer.pRenderer, width,height);
-        pRenderView = tempRef_pRenderView.argValue;
-        if (error != Vault.VaultAPI.vdkError.vE_Success)
+        final int error = VaultSDKLib.INSTANCE.vdkRenderView_Create(context.pContext, ppRenderView, renderer.pRenderContext, width,height);
+        pRenderView = ppRenderView.getPointer(0);
+        if (error != Vault.VaultAPI.vdkError.vE_Success.val)
         {
             throw new RuntimeException("vdkRenderView.Create failed.");
         }
@@ -21,23 +24,20 @@ public class vdkRenderView extends VaultAPI {
 
     public final void Destroy()
     {
-        final RefObject<IntByReference> tempRef_pRenderView = new RefObject<IntByReference>(pRenderView);
-        final vdkError error = vdkRenderView_Destroy(tempRef_pRenderView);
-        pRenderView = tempRef_pRenderView.argValue;
-        if (error != Vault.VaultAPI.vdkError.vE_Success)
+        final int error = VaultSDKLib.INSTANCE.vdkRenderView_Destroy(ppRenderView);
+        if (error != Vault.VaultAPI.vdkError.vE_Success.val)
         {
             throw new RuntimeException("vdkRenderView.Destroy failed.");
         }
+        pRenderView = null;
     }
 
     //ORIGINAL LINE: public void SetTargets(ref UInt32[] colorBuffer, UInt32 clearColor, ref float[] depthBuffer)
-    public final void SetTargets(final RefObject<int[]> colorBuffer, final int clearColor, final RefObject<float[]> depthBuffer)
+    public final void SetTargets(Memory colourBuffer, final int clearColour, Memory depthBuffer)
     {
-        colorBufferHandle = colorBuffer.argValue;
-        depthBufferHandle = depthBuffer.argValue;
 
-        final vdkError error = vdkRenderView_SetTargets(pRenderView, colorBufferHandle , clearColor, depthBufferHandle);
-        if (error != Vault.VaultAPI.vdkError.vE_Success)
+        final int error = VaultSDKLib.INSTANCE.vdkRenderView_SetTargets(pRenderView, colourBuffer , clearColour, depthBuffer);
+        if (error != Vault.VaultAPI.vdkError.vE_Success.val)
         {
             throw new RuntimeException("vdkRenderView.SetTargets failed.");
         }
@@ -45,8 +45,8 @@ public class vdkRenderView extends VaultAPI {
 
     public final void GetMatrix(final RenderViewMatrix matrixType, final double[] cameraMatrix)
     {
-        final vdkError error = vdkRenderView_GetMatrix(pRenderView, matrixType, cameraMatrix);
-        if (error != Vault.VaultAPI.vdkError.vE_Success)
+        final int error = VaultSDKLib.INSTANCE.vdkRenderView_GetMatrix(pRenderView, matrixType.ordinal(), cameraMatrix);
+        if (error != Vault.VaultAPI.vdkError.vE_Success.val)
         {
             throw new RuntimeException("vdkRenderView.GetMatrix failed.");
         }
@@ -54,29 +54,10 @@ public class vdkRenderView extends VaultAPI {
 
     public final void SetMatrix(final RenderViewMatrix matrixType, final double[] cameraMatrix)
     {
-        final vdkError error = vdkRenderView_SetMatrix(pRenderView, matrixType, cameraMatrix);
-        if (error != Vault.VaultAPI.vdkError.vE_Success)
+        final int error = VaultSDKLib.INSTANCE.vdkRenderView_SetMatrix(pRenderView, matrixType.ordinal(), cameraMatrix);
+        if (error != Vault.VaultAPI.vdkError.vE_Success.val)
         {
             throw new RuntimeException("vdkRenderView.SetMatrix failed.");
         }
     }
-
-    public IntByReference pRenderView = null;
-    private vdkContext context;
-
-
-    private  native vdkError vdkRenderView_Create(IntByReference pContext, RefObject<IntByReference> ppRenderView, IntByReference pRenderer, int width, int height);
-
-    {
-        System.loadLibrary("vaultSDK.dll");
-    }
-
-    private  native vdkError vdkRenderView_Destroy(RefObject<IntByReference> ppRenderView);
-
-    private  native vdkError vdkRenderView_SetTargets(IntByReference pRenderView, IntByReference pColorBuffer, int colorClearValue, IntByReference pDepthBuffer);
-
-    private  native vdkError vdkRenderView_GetMatrix(IntByReference pRenderView, RenderViewMatrix matrixType, double[] cameraMatrix);
-
-    private  native vdkError vdkRenderView_SetMatrix(IntByReference pRenderView, RenderViewMatrix matrixType, double[] cameraMatrix);
-
 }

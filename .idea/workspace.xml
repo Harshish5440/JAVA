@@ -1,48 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="84f7f517-2a13-451d-ac5e-87d084bd8ad7" name="Default Changelist" comment="" />
+    <list default="true" id="93357c01-836a-4f68-9a5b-5200bdcc7fa2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DirCube.uds" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/git.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/saved.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Vault/VaultSDKLib.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/description.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/project-template.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vault/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vault/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vault/RefObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vault/RefObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vault/VaultAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vault/VaultAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vault/vdkAttributeSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vault/vdkAttributeSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vault/vdkContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vault/vdkContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vault/vdkConvertContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vault/vdkConvertContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vault/vdkLicenseInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vault/vdkLicenseInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vault/vdkPointCloud.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vault/vdkPointCloud.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vault/vdkPointCloudHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vault/vdkPointCloudHeader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vault/vdkRenderContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vault/vdkRenderContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vault/vdkRenderInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vault/vdkRenderInstance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vault/vdkRenderView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vault/vdkRenderView.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="CodeInsightWorkspaceSettings">
-    <option name="optimizeImportsOnTheFly" value="true" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <option name="HIDDEN_KINDS">
-      <set />
-    </option>
-    <expand />
-    <select />
+  <component name="ProjectId" id="1Zus6KPzaFGKaqDISMfvSGE1aja" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Enum" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectId" id="1ZdmsFeuyoy8bxYwnHiTkbUVPuI" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="findjar.last.used.dir" value="$PROJECT_DIR$" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/jna-5.5.0.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../jna-5.5.0.jar!/" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -50,68 +58,100 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="13" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Vault.Main" />
-      <module name="java" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
+      <module name="git" />
+      <option name="PROGRAM_PARAMETERS" value="-Djna.library.path=&quot;D:/Euclideon_vdk0.5.1/lib/win_x64&quot;" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
+    <configuration default="true" type="Java Scratch">
+      <option name="MAIN_CLASS_NAME" value="Vault.Main" />
+      <option name="VM_PARAMETERS" value="-Djna.library.path=&quot;D:\git\Euclideon_vdk0.4.1\lib\win_x64&quot;" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="84f7f517-2a13-451d-ac5e-87d084bd8ad7" name="Default Changelist" comment="" />
-      <created>1585177549111</created>
+      <changelist id="93357c01-836a-4f68-9a5b-5200bdcc7fa2" name="Default Changelist" comment="" />
+      <created>1585700136271</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1585177549111</updated>
-      <workItem from="1585177553835" duration="15684000" />
-      <workItem from="1585260536953" duration="7196000" />
+      <updated>1585700136271</updated>
+      <workItem from="1585700137831" duration="2757000" />
+      <workItem from="1585703715044" duration="2718000" />
+      <workItem from="1585706650824" duration="3149000" />
+      <workItem from="1585715571821" duration="2590000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="361" y="86" key="#HTTP_Proxy" timestamp="1585178830465">
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585706167114">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="86" key="#HTTP_Proxy/0.0.1536.824@0.0.1536.824" timestamp="1585178830465" />
-    <state x="499" y="167" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1585186577997">
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1585706167114" />
+    <state x="548" y="167" key="FileChooserDialogImpl" timestamp="1585706686393">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="499" y="167" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1585186577997" />
-    <state x="473" y="96" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog" timestamp="1585186969442">
+    <state x="548" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1585706686393" />
+    <state width="1493" height="289" key="GridCell.Tab.0.bottom" timestamp="1585717978077">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="473" y="96" key="#com.intellij.refactoring.encapsulateFields.EncalpsulateFieldsDialog/0.0.1536.824@0.0.1536.824" timestamp="1585186969442" />
-    <state x="549" y="154" key="FileChooserDialogImpl" timestamp="1585179340601">
+    <state width="1493" height="289" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585717978077" />
+    <state width="1493" height="289" key="GridCell.Tab.0.center" timestamp="1585717978077">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1585179340601" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1585179352223">
+    <state width="1493" height="289" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585717978077" />
+    <state width="1493" height="289" key="GridCell.Tab.0.left" timestamp="1585717978076">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1585179352223" />
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1585260580516">
+    <state width="1493" height="289" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585717978076" />
+    <state width="1493" height="289" key="GridCell.Tab.0.right" timestamp="1585717978077">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1585260580516" />
+    <state width="1493" height="289" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585717978077" />
+    <state width="1478" height="258" key="GridCell.Tab.1.bottom" timestamp="1585707407419">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="258" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585707407419" />
+    <state width="1478" height="258" key="GridCell.Tab.1.center" timestamp="1585707407419">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="258" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1585707407419" />
+    <state width="1478" height="258" key="GridCell.Tab.1.left" timestamp="1585707407419">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="258" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1585707407419" />
+    <state width="1478" height="258" key="GridCell.Tab.1.right" timestamp="1585707407419">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1478" height="258" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1585707407419" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1585706687616">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1585706687616" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1585715572068">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1585715572068" />
   </component>
 </project>
