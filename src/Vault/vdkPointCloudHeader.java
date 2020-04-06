@@ -8,7 +8,7 @@ public class vdkPointCloudHeader extends Structure {
     public double unitMeterScale; //!< The scale to apply to convert to/from metres (after scaledRange is applied to the unitCube)
     public int totalLODLayers; //!< The total number of LOD layers in this octree
     public double convertedResolution; //!< The resolution this model was converted at
-    public double[] storedMatrix; //!< This matrix is the 'default' internal matrix to go from a unit cube to the full size
+    public double[] storedMatrix = new double[16]; //!< This matrix is the 'default' internal matrix to go from a unit cube to the full size
 
     public int attributes; //!< The attributes contained in this pointcloud
 

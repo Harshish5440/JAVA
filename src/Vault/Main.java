@@ -72,21 +72,23 @@ public class Main {
                     0, -5, 0, 1};
 
             renderView.SetMatrix(Vault.VaultAPI.RenderViewMatrix.Camera, cameraMatrix);
-
             Vault.vdkRenderInstance item =  new Vault.vdkRenderInstance();
+            //item.write();
             item.pointCloud = udModel.ppModel.getPointer(0);
-            //item.worldMatrix = header.storedMatrix;
-            /*
+            item.worldMatrix = header.storedMatrix;
+
             Vault.vdkRenderInstance itemFlipped = new Vault.vdkRenderInstance();
+            //itemFlipped.write();
             itemFlipped.pointCloud = udModel.ppModel.getPointer(0);
             itemFlipped.worldMatrix = header.storedMatrix;
             itemFlipped.worldMatrix[0] = -itemFlipped.worldMatrix[0];
             itemFlipped.worldMatrix[5] = -itemFlipped.worldMatrix[5];
             itemFlipped.worldMatrix[10] = -itemFlipped.worldMatrix[10];
 
+
             Vault.vdkRenderInstance[] modelArray = new Vault.vdkRenderInstance[]{item, itemFlipped};
-            */
-            Vault.vdkRenderInstance[] modelArray = new Vault.vdkRenderInstance[]{item};
+            System.out.println(renderView);
+
 
             for (int i = 0; i < 10; i++) {
                 renderer.Render(renderView, modelArray, modelArray.length, null);

@@ -30,7 +30,7 @@ public class vdkRenderContext extends  VaultAPI {
         pRenderContext = null;
     }
 
-    public void Render(final vdkRenderView renderView, final vdkRenderInstance[] pModels, final int modelCount, Structure options)
+    public void Render(vdkRenderView renderView,vdkRenderInstance[] pModels,int modelCount, Structure options)
     {
         int error = VaultSDKLib.INSTANCE.vdkRenderContext_Render(pRenderContext, renderView.pRenderView, pModels, modelCount, null );
         if (error != Vault.VaultAPI.vdkError.vE_Success.val)

@@ -6,10 +6,16 @@ import com.sun.jna.Pointer;
 
 public class vdkPointCloud extends VaultAPI {
     Memory ppModel = null;
+
     public final void Load(final vdkContext context, final String modelLocation,  vdkPointCloudHeader header)
     {
         ppModel = new Memory(Native.POINTER_SIZE);
         final int error = VaultSDKLib.INSTANCE.vdkPointCloud_Load(context.pContext, (Pointer) ppModel, modelLocation, null);
+        System.out.print(error);
+        System.out.print("\n");
+
+        System.out.println(Vault.VaultAPI.vdkError.vE_Success.val);
+
         if (error != Vault.VaultAPI.vdkError.vE_Success.val)
         {
             throw new RuntimeException("vdkPointCloud.Load failed.");
@@ -19,16 +25,18 @@ public class vdkPointCloud extends VaultAPI {
     }
 
     public final void Unload()
-    {
-        try {
-            Thread.sleep(60000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    {           ppModel = null;
+
 
         final int error = VaultSDKLib.INSTANCE.vdkPointCloud_Unload((Pointer) ppModel);
 
+        System.out.print(error);
+        System.out.print("\n");
+
+        System.out.println(Vault.VaultAPI.vdkError.vE_Success.val);
+
         if (error != Vault.VaultAPI.vdkError.vE_Success.val)
+
         {
             throw new RuntimeException("vdkPointCloud.Unload failed.");
         }
